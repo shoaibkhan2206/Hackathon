@@ -92,7 +92,41 @@ public class LEDTVRecommendation {
     }
     return recommendations;
   }
+/*
+*This code is a method for recommending LED TVs to a user based on their TV usage data and the TV usage data of other users. Here is a line-by-line explanation:
 
+*List<String> recommendations = new ArrayList<>(); creates an empty list called "recommendations" that will eventually hold the recommended LED TVs.
+
+*Map<String, Double> targetUserTVUsageData = this.userTVUsageData.get(user); retrieves the TV usage data of the target user, which is passed in as a parameter, from a map called "userTVUsageData". The key of the map is a user ID and the value is a map of TV usage data, where the key is the name of a TV and the value is the usage data (represented as a double).
+
+*Map<String, Double> similarities = new HashMap<>(); creates an empty map called "similarities" that will hold the similarity scores between the target user and all other users.
+
+*for (String otherUser : this.userTVUsageData.keySet()) starts a for loop that goes through all the keys in the "userTVUsageData" map. "otherUser" is a variable that holds each key (i.e., the user ID) during each iteration of the loop.
+
+*if (!otherUser.equals(user)) checks if the "otherUser" is not the same as the target user. If it is not, then the following code is executed.
+
+*Map<String, Double> otherUserTVUsageData = this.userTVUsageData.get(otherUser); retrieves the TV usage data of the "otherUser" from the "userTVUsageData" map.
+
+*double similarity = cosineSimilarity(targetUserTVUsageData, otherUserTVUsageData); calculates the similarity score between the target user and the "otherUser" using a method called "cosineSimilarity".
+
+*similarities.put(otherUser, similarity); adds the similarity score to the "similarities" map, where the key is the "otherUser" and the value is the similarity score.
+
+*List<String> mostSimilarUsers = similarities.entrySet().stream() starts a stream that goes through all the entries in the "similarities" map.
+
+*.sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue())) sorts the entries in the stream in descending order based on the similarity scores (i.e., the values of the map).
+
+*.map(Map.Entry::getKey) maps each entry in the stream to its key (i.e., the user ID).
+
+*.collect(Collectors.toList()); collects all the keys into a list called "mostSimilarUsers".
+
+*int n = 5; declares an integer variable "n" and sets it to 5. This represents the number of most similar users to consider for recommendation.
+
+*for (int i = 0; i < n && i < mostSimilarUsers.size(); i++) starts a for loop that goes through the first "n" elements in the "mostSimilarUsers" list. "i" is a variable that holds the index during each iteration of the loop.
+
+*String similarUser = mostSimilarUsers.get(i); retrieves the user ID of the
+
+
+*/
 public static void main(String[] args) {
     LEDTVRecommendation ledtvRecommendation = new LEDTVRecommendation();
     
