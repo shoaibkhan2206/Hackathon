@@ -1,4 +1,5 @@
 
+
 /**
  * The program starts by initializing the userTVUsageData and userTVs maps.
 
@@ -23,10 +24,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.Scanner;
 
 public class LEDTVRecommendation {
 
   private Map<String, Map<String, Double>> userTVUsageData;
+private static String inp;
+private static char ch;
     // Store the list of LED TVs owned by each user
   private Map<String, List<String>> userTVs;
 
@@ -127,32 +131,49 @@ public class LEDTVRecommendation {
 
 
 */
+
 public static void main(String[] args) {
-    LEDTVRecommendation ledtvRecommendation = new LEDTVRecommendation();
-    
-    Map<String, Double> user1TVUsageData = new HashMap<>();
-    user1TVUsageData.put("BrandA", 0.5);
-    user1TVUsageData.put("BrandB", 0.3);
-    user1TVUsageData.put("BrandC", 0.2);
-    List<String> user1TVs = Arrays.asList("BrandA TV", "BrandB TV", "BrandC TV");
-    
-    Map<String, Double> user2TVUsageData = new HashMap<>();
-    user2TVUsageData.put("BrandA", 0.4);
-    user2TVUsageData.put("BrandB", 0.4);
-    user2TVUsageData.put("BrandC", 0.2);
-    List<String> user2TVs = Arrays.asList("BrandA TV", "BrandB TV");
-    
-    Map<String, Double> user3TVUsageData = new HashMap<>();
-    user3TVUsageData.put("BrandA", 0.1);
-    user3TVUsageData.put("BrandB", 0.8);
-    user3TVUsageData.put("BrandC", 0.1);
-    List<String> user3TVs = Arrays.asList("BrandB TV", "BrandC TV");
-    
-    ledtvRecommendation.addUserData("User1", user1TVUsageData, user1TVs);
-    ledtvRecommendation.addUserData("User2", user2TVUsageData, user2TVs);
-    ledtvRecommendation.addUserData("User3", user3TVUsageData, user3TVs);
-    
-    List<String> recommendations = ledtvRecommendation.getLEDTVRecommendations("User1");
-    System.out.println("LED TV Recommendations for User1: " + recommendations);
-    }
+LEDTVRecommendation recommendation = new LEDTVRecommendation();
+Scanner obj = new Scanner(System.in);
+// Add user data
+Map<String, Double> user1TVUsageData = new HashMap<>();
+user1TVUsageData.put("electric bill", 50.0);
+user1TVUsageData.put("hours run per day", 4.0);
+recommendation.addUserData("user1", user1TVUsageData, Arrays.asList("LEDTV1"));
+
+Map<String, Double> user2TVUsageData = new HashMap<>();
+user2TVUsageData.put("electric bill", 40.0);
+user2TVUsageData.put("hours run per day", 6.0);
+recommendation.addUserData("user2", user2TVUsageData, Arrays.asList("LEDTV4"));
+
+Map<String, Double> user3TVUsageData = new HashMap<>();
+user3TVUsageData.put("electric bill", 60.0);
+user3TVUsageData.put("hours run per day", 3.0);
+recommendation.addUserData("user3", user3TVUsageData, Arrays.asList("LEDTV3"));
+while(true)
+{
+    System.out.println("Enter the user get recommendation");
+inp= obj.next();
+
+// Get LED TV recommendations for user1
+List<String> recommendations = recommendation.getLEDTVRecommendations(inp);
+System.out.println("LED TV recommendations for "+ inp +": " + recommendations);
+System.out.println("Do you want to continue? y/n");
+ch = obj.next().charAt(0);
+if(ch == 'y')
+continue;
+else if (ch == 'n')
+break;
+else  
+
+{
+    System.out.println("choose y or n only");
+    break;
 }
+
+
+}
+}
+}
+
+    
